@@ -7,7 +7,7 @@
 - Definir usuário e senha e selecionar a opção de acesso do SQL Server (ao invés de acesso do Windows)
 - No painel **Pesquisador de Objetos**, à esquerda, clicar com o botão direito em **Banco de Dados**
 - Selecionar a opção **Restaurar Banco de Dados**
-- No painel **Origem**, selecionar o *RadioButton* **Dispositivo** e localizar o arquivo de backup **PollDB.bak** enviado junto ao projeto
+- No painel **Origem**, selecionar o *RadioButton* **Dispositivo** e localizar o arquivo de backup **PollDB.bak** que se encontra junto ao projeto
 - Aguardar a restauração da base de dados
 
 ## Configurando ConnectionString no projeto
