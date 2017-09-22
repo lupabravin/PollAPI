@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="option">
+    <Key>
+      <PropertyRef Name="index" />
+    </Key>
+    <Property Name="index" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="option_id" Type="int" Nullable="false" />
+    <Property Name="option_description" Type="varchar(max)" Nullable="false" />
+    <Property Name="qty" Type="int" Nullable="false" />
+    <Property Name="poll_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="poll">
+    <Key>
+      <PropertyRef Name="poll_id" />
+    </Key>
+    <Property Name="poll_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="poll_description" Type="varchar(max)" Nullable="false" />
+    <Property Name="views" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_options_poll">
+    <End Role="poll" Type="Self.poll" Multiplicity="1" />
+    <End Role="option" Type="Self.option" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="poll">
+        <PropertyRef Name="poll_id" />
+      </Principal>
+      <Dependent Role="option">
+        <PropertyRef Name="poll_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_poll_poll">
+    <End Role="poll" Type="Self.poll" Multiplicity="1" />
+    <End Role="poll1" Type="Self.poll" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="poll">
+        <PropertyRef Name="poll_id" />
+      </Principal>
+      <Dependent Role="poll1">
+        <PropertyRef Name="poll_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="option" EntityType="Self.option" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="poll" EntityType="Self.poll" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_options_poll" Association="Self.FK_options_poll">
+      <End Role="poll" EntitySet="poll" />
+      <End Role="option" EntitySet="option" />
+    </AssociationSet>
+    <AssociationSet Name="FK_poll_poll" Association="Self.FK_poll_poll">
+      <End Role="poll" EntitySet="poll" />
+      <End Role="poll1" EntitySet="poll" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

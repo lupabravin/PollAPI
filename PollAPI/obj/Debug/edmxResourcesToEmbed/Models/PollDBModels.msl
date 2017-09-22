@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="PollDBModel">
+    <EntitySetMapping Name="poll">
+      <EntityTypeMapping TypeName="DBModel.Poll">
+        <MappingFragment StoreEntitySet="poll">
+          <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+          <ScalarProperty Name="poll_description" ColumnName="poll_description" />
+          <ScalarProperty Name="views" ColumnName="views" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="option">
+      <EntityTypeMapping TypeName="DBModel.Option">
+        <MappingFragment StoreEntitySet="option">
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+          <ScalarProperty Name="option_description" ColumnName="option_description" />
+          <ScalarProperty Name="option_id" ColumnName="option_id" />
+          <ScalarProperty Name="index" ColumnName="index" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
