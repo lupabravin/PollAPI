@@ -1,19 +1,19 @@
 # PollAPI - README 
----
+
 ## Restaurando Banco de Dados  SQL Server 2014
 
 - Realizar o download e instalar o [Microsoft SQL Server 2014 Express](https://www.microsoft.com/pt-br/download/details.aspx?id=42299)
 - Abrir o **SQL Server Management Studio**
-- Definir usu·rio e senha e selecionar a opÁ„o de acesso do SQL Server (ao invÈs de acesso do Windows)
-- No painel **Pesquisador de Objetos**, ‡ esquerda, clicar com o bot„o direito em **Banco de Dados**
-- Selecionar a opÁ„o **Restaurar Banco de Dados**
-- No painel **Origem**, selecionar o *RadioButton* **Dispositivo** e localizar o arquivo de backup **PollDB.bak** enviado junto ao projeto
-- Aguardar a restauraÁ„o da base de dados
----
+- Definir usu√°rio e senha e selecionar a op√ß√£o de acesso do SQL Server (ao inv√©s de acesso do Windows)
+- No painel **Pesquisador de Objetos**, √† esquerda, clicar com o bot√£o direito em **Banco de Dados**
+- Selecionar a op√ß√£o **Restaurar Banco de Dados**
+- No painel **Origem**, selecionar o *RadioButton* **Dispositivo** e localizar o arquivo de backup **PollDB.bak** que se encontra junto ao projeto
+- Aguardar a restaura√ß√£o da base de dados
+
 ## Configurando ConnectionString no projeto
 - Abrir a solution PollAPI.sln utilizando o [Vistual Studio 2017 Community](https://www.visualstudio.com/pt-br/thank-you-downloading-visual-studio/?sku=Community&rel=15)
 - Localizar e abrir o arquivo **Web.config** na pasta raiz do projeto por meio do *Solution Explorer* 
-- Procurar a regi„o definida para a string de conex„o na linha 71, que estar· desta forma:
+- Procurar a regi√£o definida para a string de conex√£o na linha 71, que estar√° desta forma:
 
 ```xml
 <connectionStrings>
@@ -22,16 +22,16 @@
 ```
 
 - Alterar as seguintes propriedades:
-    - Propriedade *data source* com o endereÁo do servidor ou inst‚ncia SQL Server em que a API ser· hospedada;
-    - Propriedades *user id* e *password* com o usu·rio e senha cadastrados no SQL Server;
+    - Propriedade *data source* com o endere√ßo do servidor ou inst√¢ncia SQL Server em que a API ser√° hospedada;
+    - Propriedades *user id* e *password* com o usu√°rio e senha cadastrados no SQL Server;
 
----
+
 ## Executando a API no Visual Studio
-- Com o projeto ainda aberto no **Visual Studio 2017 Community**, clicar no menu superior **Build** e selecionar a opÁ„o **Build Solution**
-- Selecionar configuraÁ„o desejada: **Debug** ou **Release**
+- Com o projeto ainda aberto no **Visual Studio 2017 Community**, clicar no menu superior **Build** e selecionar a op√ß√£o **Build Solution**
+- Selecionar configura√ß√£o desejada: **Debug** ou **Release**
  
 
 ----
-#####  As requisiÁıes utilizadas para a realizaÁ„o dos testes via Postman se encontram neste [link](https://documenter.getpostman.com/view/1436800/poll-api-requests/6tgWNAa) 
+#####  As requisi√ß√µes utilizadas para a realiza√ß√£o dos testes via Postman se encontram neste [link](https://documenter.getpostman.com/view/1436800/poll-api-requests/6tgWNAa) 
 
 
