@@ -25,9 +25,9 @@ namespace PollAPI
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<option> options { get; set; }
-        public virtual DbSet<poll> polls { get; set; }
-        public virtual DbSet<view> views { get; set; }
-        public virtual DbSet<vote> votes { get; set; }
+        public virtual DbSet<Option> Options { get; set; }
+        public virtual DbSet<Poll> Polls { get; set; }
+        public virtual DbSet<View> Views { get; set; }
+        public virtual DbSet<Vote> Votes { get; set; }
     }
 }

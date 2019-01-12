@@ -19,11 +19,11 @@ namespace PollAPI.Controllers
         PollDB PollDBContext = new PollDB();
 
         #region GET: /poll/:id
-        [ResponseType(typeof(poll))]
+        [ResponseType(typeof(Poll))]
         [Route("poll/{id}")]
         public IHttpActionResult GetPoll(int id)
         {
-            poll poll = PollDBContext.polls.Find(id);
+            Poll poll = PollDBContext.Polls.Find(id);
 
             if (poll == null)
                 return NotFound();
@@ -34,18 +34,18 @@ namespace PollAPI.Controllers
                 Description = poll.poll_description,
             };
 
-            var options = JArray.Parse(JsonConvert.SerializeObject(PollDBContext.options.Where(x => x.poll_id == id).Select(x => new { x.option_id, x.option_description }).ToArray()));
+            var options = JArray.Parse(JsonConvert.SerializeObject(PollDBContext.Options.Where(x => x.poll_id == id).Select(x => new { x.option_id, x.option_description }).ToArray()));
 
             return Json(new { poll_id = poll.poll_id, poll_description = poll.poll_description, options = options });
         }
         #endregion
 
         #region GET: /poll/:id/stats
-        [ResponseType(typeof(poll))]
+        [ResponseType(typeof(Poll))]
         [Route("poll/{id}/stats")]
         public IHttpActionResult GetPollStats(int id)
         {
-            var poll = PollDBContext.polls.Find(id);
+            var poll = PollDBContext.Polls.Find(id);
 
             if (poll == null)
             {
@@ -58,13 +58,13 @@ namespace PollAPI.Controllers
                 {
                     try
                     {
-                        var view = new view()
+                        var view = new View()
                         {
                             poll_id = id,
                             date = DateTime.Now
                         };
 
-                        PollContext.views.Add(view);
+                        PollContext.Views.Add(view);
                         PollContext.SaveChanges();
                         PollDBContextTransaction.Commit();
                     }
@@ -75,12 +75,12 @@ namespace PollAPI.Controllers
                     }
                 }
             }
-            var views = PollDBContext.views.Where(x => x.poll_id == id).Count();
-            var votes = JArray.Parse(JsonConvert.SerializeObject(from o in PollDBContext.options.Where(option => option.poll_id == id)
+            var views = PollDBContext.Views.Where(x => x.poll_id == id).Count();
+            var votes = JArray.Parse(JsonConvert.SerializeObject(from o in PollDBContext.Options.Where(option => option.poll_id == id)
                         select new
                         {
                             option_id = o.option_id,
-                            qty = PollDBContext.votes.Where(x => x.option_id == o.option_id).Count()
+                            qty = PollDBContext.Votes.Where(x => x.option_id == o.option_id).Count()
                         }
             ));
 
@@ -89,7 +89,7 @@ namespace PollAPI.Controllers
         #endregion
 
         #region POST: /poll
-        [ResponseType(typeof(poll))]
+        [ResponseType(typeof(Poll))]
         [Route("poll")]
 
         public IHttpActionResult Post(PollDTO poll)
@@ -99,7 +99,7 @@ namespace PollAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var pollModel = new poll()
+            var pollModel = new Poll()
             {
                 poll_description = poll.Description
             };
@@ -111,21 +111,21 @@ namespace PollAPI.Controllers
                 {
                     try
                     {
-                        PollContext.polls.Add(pollModel);
+                        PollContext.Polls.Add(pollModel);
                         PollContext.SaveChanges();
                         poll.Id = pollModel.poll_id;
 
-                        ICollection<option> options = new HashSet<option>();
+                        ICollection<Option> options = new HashSet<Option>();
                         poll.Options.ToList().ForEach(
                             description => options.Add(
-                                new option()
+                                new Option()
                                 {
                                     option_description = description,
                                     poll_id = poll.Id
                                 })
                             );
 
-                        PollContext.options.AddRange(options);
+                        PollContext.Options.AddRange(options);
                         PollContext.SaveChanges();
                         PollDBContextTransaction.Commit();
                     }
@@ -142,20 +142,20 @@ namespace PollAPI.Controllers
         #endregion
 
         #region POST: poll/:id/vote
-        [ResponseType(typeof(poll))]
+        [ResponseType(typeof(Poll))]
         [Route("poll/{id}/vote")]
-        public IHttpActionResult PostVote(int id)
+        public IHttpActionResult PostVote(OptionDTO option, int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            option votedOption;
+            Option votedOption = option;
 
             try
             {
-                votedOption = PollDBContext.options.Where(x => x.poll_id == id && x.option_id == id).First();
+                votedOption = PollDBContext.Options.Where(x => x.poll_id == id && x.option_id == option.option_id).First();
             }
             catch (Exception)
             {
@@ -168,13 +168,13 @@ namespace PollAPI.Controllers
                 {
                     try
                     {
-                        var vote = new vote()
+                        var vote = new Vote()
                         {
-                            option_id = id,
+                            option_id = votedOption.option_id,
                             date = DateTime.Now
                         };
 
-                        PollContext.votes.Add(vote);
+                        PollContext.Votes.Add(vote);
                         PollContext.SaveChanges();
                         PollDBContextTransaction.Commit();
                     }

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PollAPI.Models.DTO
 {
-    public class OptionDTO : option
+    public class OptionDTO : Option
     {
         public int Id
         {

@@ -12,7 +12,7 @@ namespace PollAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class vote
+    public partial class Vote
     {
         public Nullable<System.DateTime> date { get; set; }
         public int option_id { get; set; }

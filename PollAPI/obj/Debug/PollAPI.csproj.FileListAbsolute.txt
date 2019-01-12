@@ -396,7 +396,6 @@ E:\Projects\PollAPI_v2\PollAPI\bin\Microsoft.AI.DependencyCollector.xml
 E:\Projects\PollAPI_v2\PollAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\Projects\PollAPI_v2\PollAPI\bin\Microsoft.AI.WindowsServer.xml
 E:\Projects\PollAPI_v2\PollAPI\bin\Microsoft.AI.Web.xml
-E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.csprojAssemblyReference.cache
 E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.csproj.CoreCompileInputs.cache
 E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.csproj.CopyComplete
 E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.dll

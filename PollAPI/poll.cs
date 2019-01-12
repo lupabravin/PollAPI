@@ -11,14 +11,14 @@ namespace PollAPI
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class poll
+
+    public partial class Poll
     {
         public int poll_id { get; set; }
         public string poll_description { get; set; }
-    
-        public virtual poll poll1 { get; set; }
-        public virtual poll poll2 { get; set; }
-        public virtual HashSet<string> options { get; set; }
+
+        public virtual ICollection<string> Options {get;set;}
+        public virtual Poll Poll1 { get; set; }
+        public virtual Poll Poll2 { get; set; }
     }
 }

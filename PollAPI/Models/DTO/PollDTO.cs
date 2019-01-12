@@ -6,7 +6,7 @@ using System.Web;
 
 namespace PollAPI.Models.DTO
 {
-    public class PollDTO : poll
+    public class PollDTO : Poll
     {
         [DataMember(Order = 0)]
         public int Id { get { return poll_id; } set { poll_id = value; } }
@@ -15,11 +15,11 @@ namespace PollAPI.Models.DTO
         public string Description { get { return poll_description; } set { poll_description = value; } }
 
         [DataMember(Order = 2)]
-        public ICollection<string> Options
+        public ICollection<string> OptionsList
         {
             get
             {
-                return options;
+                return Options;
             }
 
         }

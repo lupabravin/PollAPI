@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3ff8fd823a674c058e68d8b8a81897fe" Name="Diagram1">
-        <EntityTypeShape EntityType="PollDBModel.option" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PollDBModel.poll" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PollDBModel.view" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PollDBModel.vote" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="bfc39f32259c432aac271b262cdb715d" Name="Diagram1">
+        <EntityTypeShape EntityType="PollDBModel.Option" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PollDBModel.Poll" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PollDBModel.View" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PollDBModel.Vote" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="PollDBModel.FK__option__poll_id__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="PollDBModel.FK_poll_poll" ManuallyRouted="false" />
       </Diagram>

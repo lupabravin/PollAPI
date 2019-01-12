@@ -12,12 +12,12 @@ namespace PollAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class option
+    public partial class Option
     {
         public int option_id { get; set; }
         public string option_description { get; set; }
         public int poll_id { get; set; }
     
-        public virtual poll poll { get; set; }
+        public virtual Poll Poll { get; set; }
     }
 }
