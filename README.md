@@ -35,3 +35,4 @@
 #####  As requisições utilizadas para a realização dos testes via Postman se encontram neste [link](https://documenter.getpostman.com/view/1436800/poll-api-requests/6tgWNAa) 
 
 
+# PollAPI_v2
