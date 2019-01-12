@@ -184,6 +184,7 @@
       <DependentUpon>PollDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PollService.cs" />
     <Compile Include="View.cs">
       <DependentUpon>PollDB.tt</DependentUpon>
     </Compile>

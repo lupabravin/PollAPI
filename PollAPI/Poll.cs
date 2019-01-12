@@ -17,6 +17,7 @@ namespace PollAPI
         public int poll_id { get; set; }
         public string poll_description { get; set; }
 
+        public virtual ICollection<string> options { get; set; }
         public virtual ICollection<string> Options {get;set;}
         public virtual Poll Poll1 { get; set; }
         public virtual Poll Poll2 { get; set; }

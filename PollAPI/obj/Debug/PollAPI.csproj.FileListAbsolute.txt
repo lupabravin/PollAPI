@@ -400,3 +400,4 @@ E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.csproj.CoreCompileInputs.cache
 E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.csproj.CopyComplete
 E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.dll
 E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.pdb
+E:\Projects\PollAPI_v2\PollAPI\obj\Debug\PollAPI.csprojAssemblyReference.cache
