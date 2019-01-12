@@ -121,7 +121,7 @@ namespace PollAPI.Controllers
                                 new option()
                                 {
                                     option_description = description,
-                                    poll_id = poll.Id,
+                                    poll_id = poll.Id
                                 })
                             );
 

@@ -11,8 +11,8 @@ namespace PollAPI.Models.DTO
     {
         public int Id
         {
-            get { return poll_id; }
-            set { poll_id = value; }
+            get { return option_id; }
+            set { option_id = value; }
         }
 
         public string Description
