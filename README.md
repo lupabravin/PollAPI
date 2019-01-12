@@ -13,7 +13,7 @@
 ## Configurando ConnectionString no projeto
 - Abrir a solution PollAPI.sln utilizando o [Vistual Studio 2017 Community](https://www.visualstudio.com/pt-br/thank-you-downloading-visual-studio/?sku=Community&rel=15)
 - Localizar e abrir o arquivo **Web.config** na pasta raiz do projeto por meio do *Solution Explorer* 
-- Procurar a região definida para a string de conexão na linha 71, que estará desta forma:
+- Procurar a região definida para a string de conexão na linha 72, que estará desta forma:
 
 ```xml
 <connectionStrings>
