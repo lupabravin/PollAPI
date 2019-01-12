@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PollDBModelStoreContainer" CdmEntityContainer="PollDB">
+    <EntitySetMapping Name="options">
+      <EntityTypeMapping TypeName="PollDBModel.option">
+        <MappingFragment StoreEntitySet="option">
+          <ScalarProperty Name="option_id" ColumnName="option_id" />
+          <ScalarProperty Name="option_description" ColumnName="option_description" />
+          <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="polls">
+      <EntityTypeMapping TypeName="PollDBModel.poll">
+        <MappingFragment StoreEntitySet="poll">
+          <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+          <ScalarProperty Name="poll_description" ColumnName="poll_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="views">
+      <EntityTypeMapping TypeName="PollDBModel.view">
+        <MappingFragment StoreEntitySet="views">
+          <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="votes">
+      <EntityTypeMapping TypeName="PollDBModel.vote">
+        <MappingFragment StoreEntitySet="votes">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="option_id" ColumnName="option_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

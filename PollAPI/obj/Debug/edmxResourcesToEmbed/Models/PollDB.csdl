@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Poll">
+    <Key>
+      <PropertyRef Name="poll_id" />
+    </Key>
+    <Property Name="poll_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="poll_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="views" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="option" Relationship="DBModel.FK_options_poll" FromRole="poll" ToRole="option" />
+  </EntityType>
+  <EntityContainer Name="PollDBModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="poll" EntityType="DBModel.Poll" />
+    <AssociationSet Name="FK_poll_poll" Association="DBModel.FK_poll_poll">
+      <End Role="poll" EntitySet="poll" />
+      <End Role="poll1" EntitySet="poll" />
+    </AssociationSet>
+    <EntitySet Name="option" EntityType="DBModel.Option" />
+    <AssociationSet Name="FK_options_poll" Association="DBModel.FK_options_poll">
+      <End EntitySet="poll" Role="poll" />
+      <End EntitySet="option" Role="option" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_poll_poll">
+    <End Type="DBModel.Poll" Role="poll" Multiplicity="1" />
+    <End Type="DBModel.Poll" Role="poll1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="poll">
+        <PropertyRef Name="poll_id" />
+      </Principal>
+      <Dependent Role="poll1">
+        <PropertyRef Name="poll_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Option">
+    <Key>
+      <PropertyRef Name="option_id" />
+    </Key>
+    <Property Name="option_id" Nullable="false" Type="Int32" />
+    <Property Name="option_description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="poll_id" Nullable="false" Type="Int32" />
+    <Property Name="qty" Nullable="false" Type="Int32" />
+    <NavigationProperty Name="poll" Relationship="DBModel.FK_options_poll" FromRole="option" ToRole="poll" />
+  </EntityType>
+  <Association Name="FK_options_poll">
+    <End Type="DBModel.Poll" Multiplicity="1" Role="poll" />
+    <End Type="DBModel.Option" Multiplicity="*" Role="option" />
+    <ReferentialConstraint>
+      <Principal Role="poll">
+        <PropertyRef Name="poll_id" />
+      </Principal>
+      <Dependent Role="option">
+        <PropertyRef Name="poll_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

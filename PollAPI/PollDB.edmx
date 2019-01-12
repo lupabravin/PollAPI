@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PollDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="option">
+          <Key>
+            <PropertyRef Name="option_id" />
+          </Key>
+          <Property Name="option_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="option_description" Type="varchar(max)" Nullable="false" />
+          <Property Name="poll_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="poll">
+          <Key>
+            <PropertyRef Name="poll_id" />
+          </Key>
+          <Property Name="poll_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="poll_description" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PollDB.dbo.views' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="views">
+          <Key>
+            <PropertyRef Name="poll_id" />
+          </Key>
+          <Property Name="poll_id" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PollDB.dbo.votes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="votes">
+          <Key>
+            <PropertyRef Name="option_id" />
+          </Key>
+          <Property Name="date" Type="datetime" />
+          <Property Name="option_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__option__poll_id__52593CB8">
+          <End Role="poll" Type="Self.poll" Multiplicity="1" />
+          <End Role="option" Type="Self.option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poll">
+              <PropertyRef Name="poll_id" />
+            </Principal>
+            <Dependent Role="option">
+              <PropertyRef Name="poll_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poll_poll">
+          <End Role="poll" Type="Self.poll" Multiplicity="1" />
+          <End Role="poll1" Type="Self.poll" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="poll">
+              <PropertyRef Name="poll_id" />
+            </Principal>
+            <Dependent Role="poll1">
+              <PropertyRef Name="poll_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PollDBModelStoreContainer">
+          <EntitySet Name="option" EntityType="Self.option" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="poll" EntityType="Self.poll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="views" EntityType="Self.views" store:Type="Tables" Schema="dbo">
+          </EntitySet>
+          <EntitySet Name="votes" EntityType="Self.votes" store:Type="Tables" Schema="dbo">
+          </EntitySet>
+          <AssociationSet Name="FK__option__poll_id__52593CB8" Association="Self.FK__option__poll_id__52593CB8">
+            <End Role="poll" EntitySet="poll" />
+            <End Role="option" EntitySet="option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poll_poll" Association="Self.FK_poll_poll">
+            <End Role="poll" EntitySet="poll" />
+            <End Role="poll1" EntitySet="poll" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PollDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="option">
+          <Key>
+            <PropertyRef Name="option_id" />
+          </Key>
+          <Property Name="option_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="option_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="poll_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="poll" Relationship="Self.FK__option__poll_id__52593CB8" FromRole="option" ToRole="poll" />
+        </EntityType>
+        <EntityType Name="poll">
+          <Key>
+            <PropertyRef Name="poll_id" />
+          </Key>
+          <Property Name="poll_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="poll_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="poll1" Relationship="Self.FK_poll_poll" FromRole="poll" ToRole="poll1" />
+          <NavigationProperty Name="poll2" Relationship="Self.FK_poll_poll" FromRole="poll1" ToRole="poll" />
+        </EntityType>
+        <EntityType Name="view">
+          <Key>
+            <PropertyRef Name="poll_id" />
+          </Key>
+          <Property Name="poll_id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vote">
+          <Key>
+            <PropertyRef Name="option_id" />
+          </Key>
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="option_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__option__poll_id__52593CB8">
+          <End Role="poll" Type="Self.poll" Multiplicity="1" />
+          <End Role="option" Type="Self.option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poll">
+              <PropertyRef Name="poll_id" />
+            </Principal>
+            <Dependent Role="option">
+              <PropertyRef Name="poll_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poll_poll">
+          <End Role="poll" Type="Self.poll" Multiplicity="1" />
+          <End Role="poll1" Type="Self.poll" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="poll">
+              <PropertyRef Name="poll_id" />
+            </Principal>
+            <Dependent Role="poll1">
+              <PropertyRef Name="poll_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PollDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="options" EntityType="Self.option" />
+          <EntitySet Name="polls" EntityType="Self.poll" />
+          <EntitySet Name="views" EntityType="Self.view" />
+          <EntitySet Name="votes" EntityType="Self.vote" />
+          <AssociationSet Name="FK__option__poll_id__52593CB8" Association="Self.FK__option__poll_id__52593CB8">
+            <End Role="poll" EntitySet="polls" />
+            <End Role="option" EntitySet="options" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poll_poll" Association="Self.FK_poll_poll">
+            <End Role="poll" EntitySet="polls" />
+            <End Role="poll1" EntitySet="polls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PollDBModelStoreContainer" CdmEntityContainer="PollDB">
+          <EntitySetMapping Name="options">
+            <EntityTypeMapping TypeName="PollDBModel.option">
+              <MappingFragment StoreEntitySet="option">
+                <ScalarProperty Name="option_id" ColumnName="option_id" />
+                <ScalarProperty Name="option_description" ColumnName="option_description" />
+                <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="polls">
+            <EntityTypeMapping TypeName="PollDBModel.poll">
+              <MappingFragment StoreEntitySet="poll">
+                <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+                <ScalarProperty Name="poll_description" ColumnName="poll_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="views">
+            <EntityTypeMapping TypeName="PollDBModel.view">
+              <MappingFragment StoreEntitySet="views">
+                <ScalarProperty Name="poll_id" ColumnName="poll_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="votes">
+            <EntityTypeMapping TypeName="PollDBModel.vote">
+              <MappingFragment StoreEntitySet="votes">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="option_id" ColumnName="option_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
